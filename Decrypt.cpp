@@ -1,6 +1,6 @@
 
 #include <DMA/Memory/Memory.h>
-#include <defs.h> //This is IDAs defs.h Located at "C:\Program Files\IDA Professional 9.0\plugins\hexrays_sdk\include\def.h"
+#include <defs.h>
 
 
 bool TEST_BITD(uint32_t Value, uint32_t BitPosition) {
@@ -131,7 +131,6 @@ auto decrypt_PlayerInventory(std::uint64_t a2) -> std::uint64_t {  // PlayerInve
 
 auto decrypt_inventory_pointer(std::uint64_t a1) -> std::uint64_t // inventory and eyes
 {
-	//auto il2cpp_object = Il2cppGetHandle((std::int32_t)decrypt_ulong_key(read<std::uint64_t>(a1 + 0x18)));
 	auto il2cpp_object = Il2cppGetHandle((std::int32_t)decrypt_PlayerInventory(mem.Read<std::uint64_t>(a1 + 0x18)));
 	return il2cpp_object;
 }
