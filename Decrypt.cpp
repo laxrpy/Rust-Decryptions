@@ -8,7 +8,7 @@ bool TEST_BITD(uint32_t Value, uint32_t BitPosition) {
 }
 
 
-uintptr_t Il2cppGetHandle_O = 0xBEB5B60;
+uintptr_t Il2cppGetHandle_O = 0xBEC73C0;
 
 uintptr_t Il2cppGetHandle(int32_t ObjectHandleID) {
 
@@ -33,77 +33,74 @@ uintptr_t Il2cppGetHandle(int32_t ObjectHandleID) {
 
 
 uintptr_t networkable_key(uintptr_t wrapper) {
+	uint64_t v8, v24;
+	uint64_t* v4;
+	int v5;
+	unsigned int v6, v7;
 
-	__int64* v4; // rdx
-	int v5; // r8d
-	unsigned int v6; // ecx
-	unsigned int v7; // eax
-	__int64 v8; // kr00_8
-	__int64 v9; // rcx
-	__int64 v26; // [rsp+20h] [rbp-28h] BYREF
-
-	v4 = &v26;
-	v26 = mem.Read<uintptr_t>(wrapper + 0x18);
+	v4 = &v24;
 	v5 = 2;
+	v24 = mem.Read<uint64_t>(wrapper + 24);
+
 	do
 	{
-		v6 = *(_DWORD*)v4;
-		v7 = *(_DWORD*)v4;
-		v4 = (__int64*)((char*)v4 + 4);
-		v8 = 8i64 * ((((v6 >> 3) | (v7 << 29)) ^ 0x1BD6DA3F) + 812328851);
-		*((_DWORD*)v4 - 1) = v8 | HIDWORD(v8);
+		v6 = *(unsigned int*)v4;
+		v7 = *(unsigned int*)v4;
+		v4 = (uint64_t*)((char*)v4 + 4);
+		*((unsigned int*)v4 - 1) = (((v7 << 0x18) | (v6 >> 8)) ^ 0x904C85FC) - 0x6D9808D3;
 		--v5;
 	} while (v5);
-	v9 = v26;
 
-	return Il2cppGetHandle(v26);
+	return Il2cppGetHandle(v24);
 }
 
 
 uintptr_t decrypt_list(uintptr_t pointer)
 {
-	__int64* v4; // rdx
-	int v5; // r8d
-	unsigned int v6; // ecx
-	unsigned int v7; // eax
-	__int64 v8; // rcx
-	__int64 v23; // [rsp+20h] [rbp-28h] BYREF
+	uint64_t v24;
+	uint64_t* v4;
+	int v5;
+	unsigned int v6, v7;
 
-	v4 = &v23;
-	v23 = mem.Read<uintptr_t>(pointer + 24);
+	v4 = &v24;
 	v5 = 2;
+	v24 = mem.Read<uint64_t>(pointer + 24);
+
 	do
 	{
-		v6 = *(_DWORD*)v4;
-		v7 = *(_DWORD*)v4;
-		v4 = (__int64*)((char*)v4 + 4);
-		*((_DWORD*)v4 - 1) = (((v7 << 23) | (v6 >> 9)) - 2051686922) ^ 0x51B6E58C;
+		v6 = *(unsigned int*)v4;
+		v7 = *(unsigned int*)v4;
+		v4 = (uint64_t*)((char*)v4 + 4);
+		*((unsigned int*)v4 - 1) = ((((v7 << 7) | (v6 >> 0x19)) + 0x20583B3A) << 0x16) | ((((v7 << 7) | (v6 >> 0x19))
+			+ 0x20583B3A) >> 0xA);
 		--v5;
 	} while (v5);
-	v8 = v23;
 
-	return Il2cppGetHandle(v23);
+	return Il2cppGetHandle(v24);
 }
 
-auto decrypt_ClActiveItem(std::uint64_t a1) -> std::uint64_t {  // ClActiveItem
-	__int64 v3; // rdx
-	int* v6; // r8
-	int v7; // r9d
-	int v8; // eax
-	uint64_t v29; // [rsp+20h] [rbp-18h] BYREF
+auto decrypt_ulong(std::uint64_t a1) -> std::uint64_t // clactiveitem
+{
+	std::uint64_t* v2; // rdx
+	int v3; // r8d
+	unsigned int v4; // ecx
+	unsigned int v5; // eax
+	std::uint64_t v9; // [rsp+20h] [rbp-18h] BYREF
 
-	v6 = (int*)&v29;
-	v7 = 2;
-	v29 = a1;
+	v2 = &v9;
+	v9 = a1;
+	v3 = 2;
+
 	do
 	{
-		v8 = *v6++;
-		v3 = (((v8 + 924573252) << 26) | ((unsigned int)(v8 + 924573252) >> 6)) ^ 0xABDB38BB;
-		*(v6 - 1) = v3;
-		--v7;
-	} while (v7);
+		v4 = *(DWORD*)v2;
+		v5 = *(DWORD*)v2;
+		v2 = (std::uint64_t*)((char*)v2 + 4);
+		*((DWORD*)v2 - 1) = ((((v5 << 13) | (v4 >> 19)) ^ 0xAEB589F8) - 1008461069) ^ 0x9287AD88;
+		--v3;
+	} while (v3);
 
-	return (uint64_t)v29;
+	return v9;
 }
 
 
@@ -127,11 +124,5 @@ auto decrypt_PlayerInventory(std::uint64_t a2) -> std::uint64_t {  // PlayerInve
 	} while (!v6);
 	v7 = v22;
 	return v7;
-}
-
-auto decrypt_inventory_pointer(std::uint64_t a1) -> std::uint64_t // inventory and eyes
-{
-	auto il2cpp_object = Il2cppGetHandle((std::int32_t)decrypt_PlayerInventory(mem.Read<std::uint64_t>(a1 + 0x18)));
-	return il2cpp_object;
 }
 
